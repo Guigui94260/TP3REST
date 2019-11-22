@@ -42,8 +42,14 @@ public class CarRentalService {
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public Car aCar(@PathVariable("plateNumber") String plateNumber) throws Exception{
+		for(Car Car : cars) {
+			if(Car.getPlateNumber().contentEquals(plateNumber)) {
+				return Car;
+			}
+		}
 		return null;
 	}
+
 	@RequestMapping(value = "/cars/{plateNumber}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.OK)
 	public void getBack(@PathVariable("plateNumber") String plateNumber) throws Exception{
